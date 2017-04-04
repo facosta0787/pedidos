@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import fetch from  'isomorphic-fetch';
+import { Grid, Row, Col } from 'react-styled-flexboxgrid';
 import styled from 'styled-components';
+import Client from '../app/components/cliente';
 
 class Home extends Component{
 
@@ -15,13 +17,14 @@ class Home extends Component{
 
 
     async componentDidMount(){
-        const URL = `http://vmr.tarrao.co/data/syncclientes/05`;
+        const URL = `http://vmr.tarrao.co/data/syncclientes/03`;
         const response = await fetch(URL);
         const data = await response.json();
         this.setState({data:data});
     }
 
     render(){
+
         if(this.state.data == 0){
             return(
                 <div>
@@ -32,14 +35,13 @@ class Home extends Component{
             );
         }else{
             return(
+
                 <div>
                     <Titulo>Pedidos - React.JS</Titulo>
                     <UlList>{this.state.data.Clientes.map(
                         cliente => {
                             return(
-                                <ItemList>
-                                    {cliente.RazonSocial} | Nit: <span><strong>{cliente.NitCliente}  {cliente.Sucursal}</strong></span>
-                                </ItemList>
+                                <Client {...cliente}/>
                             );
                         }
                     )}</UlList>
@@ -51,6 +53,12 @@ class Home extends Component{
 
 }
 export default Home;
+
+/*
+<ItemList>
+{cliente.RazonSocial} | Nit: <span><strong>{cliente.NitCliente}  {cliente.Sucursal}</strong></span>
+</ItemList>
+*/
 
 const Titulo = styled.h1`
 font-family: 'Roboto', sans-serif;
@@ -69,19 +77,5 @@ img{
 `
 const UlList = styled.ul`
 padding: 0px;
-margin: 0px 100px 0px 100px;
-`
-const ItemList = styled.li`
-font-family: 'Roboto', sans-serif;
-list-style: none;
-padding-top: 10px;
-padding-bottom: 10px;
-border-bottom: 1px solid lightgray;
-text-transform: capitalize;
-    span{
-        font-weight: bold;
-    }
-    strong{
-        color: gray;
-    }
+margin: 0px 25px 0px 25px;
 `
