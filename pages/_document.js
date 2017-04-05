@@ -7,6 +7,22 @@ import Document, {
 import styleSheet from 'styled-components/lib/models/StyleSheet';
 
 class PedidosClientes extends Document {
+
+    static async getInitialProps({ renderPage }) {
+        const page = renderPage();
+        const styles = (
+            <style
+                dangerouslySetInnerHTML={{
+                    __html: styleSheet
+                        .rules()
+                        .map(rule => rule.cssText)
+                        .join('\n')
+                }}
+            />
+        );
+        return { ...page, styles };
+    }
+
     render() {
     return (
       <html>

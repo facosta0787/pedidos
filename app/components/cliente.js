@@ -1,44 +1,41 @@
 import React, { Component } from 'react';
-import styled from 'styled-components';
-import { Col, Row } from 'react-styled-flexboxgrid';
+import Router from 'next/router';
+import { Card, Button, Row, Col, Icon } from 'react-materialize';
+import LazyLoad from 'react-lazy-load';
 
-class ClienteComponent extends Component {
+class ClienteMaterialize extends Component{
 
-  handleClick = event =>{
-    alert(`Oh que Click! ${this.props.RazonSocial}`);
-  }
+    handleClick = event =>{
 
-  render(){
-    return(
+             Router.push({
+             pathname: '/pedidos',
+             query: { codigo: this.props.NitCliente,
+             suc: this.props.Sucursal,
+             }
+             });
 
-      <ItemList onClick={this.handleClick}>
-        <Row>
-            <Col xs><Razon>{this.props.RazonSocial}</Razon></Col>
-          <Col xs>Nit: {this.props.NitCliente}</Col>
-          <Col xs>Direccion: {this.props.Direccion}</Col>
-        </Row>
-      </ItemList>
+    };
+    render(){
+        return(
+            <div>
+                <Row>
+                    <Col m={12} s={12}>
 
-    );
-  }
+                        <Card className='grey lighten-5'
+                              textClassName='grey-text text-darken-2'
+                              title={this.props.RazonSocial.replace(/\b\w/g, l => l.toUpperCase())}
+                              actions={[<Button
+                                  className='blue darken-4'
+                                  waves='light'
+                                  onClick={this.handleClick}>Pedidos</Button>]}>
+                            Nit: {this.props.NitCliente} Suc: {this.props.Sucursal}<br />
+                            Direccion: {this.props.Direccion}
+                        </Card>
+
+                    </Col>
+                </Row>
+            </div>
+        );
+    }
 }
-export default ClienteComponent;
-
-const ItemList = styled.li`
-font-family: 'Roboto', sans-serif;
-margin-bottom:5px;
-list-style: none;
-padding-top: 10px;
-padding-bottom: 10px;
-border-bottom: 1px solid lightgray;
-text-transform: capitalize;
-border-radius: 15px;
-&:hover{
-  background: #E0E0E0;
-}
-`;
-
-const Razon = styled.span`
-    padding-left: 20px;
-    text-transform: capitalize;
-`;
+export default ClienteMaterialize;
