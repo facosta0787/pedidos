@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import fetch from  'isomorphic-fetch';
 import styled from 'styled-components';
+import Cliente from '../app/components/cliente';
 
 class Home extends Component{
 
@@ -15,7 +16,7 @@ class Home extends Component{
 
 
     async componentDidMount(){
-        const URL = `http://vmr.tarrao.co/data/syncclientes/05`;
+        const URL = `http://vmr.tarrao.co/data/syncclientes/03`;
         const response = await fetch(URL);
         const data = await response.json();
         this.setState({data:data});
@@ -37,9 +38,7 @@ class Home extends Component{
                     <UlList>{this.state.data.Clientes.map(
                         cliente => {
                             return(
-                                <ItemList>
-                                    {cliente.RazonSocial} | Nit: <span><strong>{cliente.NitCliente}  {cliente.Sucursal}</strong></span>
-                                </ItemList>
+                                <Cliente {...cliente}/>
                             );
                         }
                     )}</UlList>
@@ -70,18 +69,4 @@ img{
 const UlList = styled.ul`
 padding: 0px;
 margin: 0px 100px 0px 100px;
-`
-const ItemList = styled.li`
-font-family: 'Roboto', sans-serif;
-list-style: none;
-padding-top: 10px;
-padding-bottom: 10px;
-border-bottom: 1px solid lightgray;
-text-transform: capitalize;
-    span{
-        font-weight: bold;
-    }
-    strong{
-        color: gray;
-    }
 `
