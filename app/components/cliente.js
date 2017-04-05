@@ -40,4 +40,5 @@ border-radius: 15px;
 
 const Razon = styled.span`
     padding-left: 20px;
+    text-transform: capitalize;
 `;

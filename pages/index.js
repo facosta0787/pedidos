@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import fetch from  'isomorphic-fetch';
 import styled from 'styled-components';
-import Cliente from '../app/components/cliente';
+import ClienteMaterial from '../app/components/clienteMaterialize';
+
 
 class Home extends Component{
 
@@ -38,7 +39,7 @@ class Home extends Component{
                     <UlList>{this.state.data.Clientes.map(
                         cliente => {
                             return(
-                                <Cliente {...cliente}/>
+                                <ClienteMaterial {...cliente}/>
                             );
                         }
                     )}</UlList>
@@ -51,7 +52,7 @@ class Home extends Component{
 }
 export default Home;
 
-const Titulo = styled.h1`
+const Titulo = styled.h3`
 font-family: 'Roboto', sans-serif;
 text-align: center;
 margin:auto;
@@ -68,5 +69,5 @@ img{
 `
 const UlList = styled.ul`
 padding: 0px;
-margin: 0px 100px 0px 100px;
+margin: 0px 20px 0px 20px;
 `
