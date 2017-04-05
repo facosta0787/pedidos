@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
+import ReactDOM from 'react-dom';
 import styled from 'styled-components';
 import { Col, Row } from 'react-styled-flexboxgrid';
+import Card from '../material_components/card';
 
 class ClienteComponent extends Component {
 
@@ -10,15 +12,7 @@ class ClienteComponent extends Component {
 
   render(){
     return(
-      <div>
-        <ItemList onClick={this.handleClick}>
-          <Row>
-            <Col xs>{this.props.RazonSocial}</Col>
-            <Col xs>Nit: {this.props.NitCliente}</Col>
-            <Col xs>Direccion: {this.props.Direccion}</Col>
-          </Row>
-        </ItemList>
-      </div>
+        <Card />
     );
   }
 }
@@ -36,3 +30,14 @@ border-radius: 15px;
   background: #E0E0E0;
 }
 `
+/*
+ <div>
+ <ItemList onClick={this.handleClick}>
+ <Row>
+ <Col xs>{this.props.RazonSocial}</Col>
+ <Col xs>Nit: {this.props.NitCliente}</Col>
+ <Col xs>Direccion: {this.props.Direccion}</Col>
+ </Row>
+ </ItemList>
+ </div>
+*/
