@@ -64,7 +64,7 @@ text-align: center;
 margin:auto;
 `
 const Spinner = styled.figure`
-margin: 0;
+margin: 300px 0 0 0;
 padding: 0;
 text-align: center;
 margin: 10px auto;
